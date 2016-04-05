@@ -1,4 +1,4 @@
-# Function that gets githubs popular python repos and writes json to file.
+# This program fetches Github's most popular Python repos and writes json to a file.
 
 from urllib2 import Request, urlopen, URLError
 
@@ -22,10 +22,3 @@ except URLError, e:
         print "Error code: ", e
 
         file.close()
-
-
-
-
-
-
-
