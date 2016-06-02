@@ -1,9 +1,8 @@
-# import uuid
-
 class Car():
-
+    
+    '''Constructor'''
     def __init__(self, *args, **kwargs):
-
+        #Private attributes
         if len(args) > 0 and isinstance(args[0], dict):
             hash = args[0]
             name = hash.get('name')
@@ -16,12 +15,26 @@ class Car():
 
         if name == None or not isinstance(name, str):
             raise Exception("name is not a string")
-        if brand == None or not isinstance(name, str):
+        if brand == None or not isinstance(brand, str):
             raise Exception("brand is not a string")
-        if nb_doors is <= 0(nb_doors, int):
+        if not isinstance(nb_doors, int) or nb_doors <= 0:
             raise Exception("nb_doors is not > 0")
 
+        self.__name = name
+        self.__brand = brand
+        self.__nb_doors = nb_doors
+
+    '''Getter'''
+    def get_name(self):
+        return self.__name
+    def get_brand(self):
+        return self.__brand
+    def get_nb_doors(self):
+        return self.__nb_doors
+
+    '''Public methods'''
     def to_hash(self):
-        return {'name': self.__name,
-                'brand': self.__brand,
-                'nb_doors': self.__nb_doors}
+        return {'name': self.__name, 'brand': self.__brand, 'nb_doors': self.__nb_doors}
+
+    def __str__(self):
+        return self.__name + ' ' + self.__brand + ' (' + str(self.__nb_doors) + ')'
