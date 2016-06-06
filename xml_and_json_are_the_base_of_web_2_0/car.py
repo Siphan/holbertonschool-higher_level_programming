@@ -1,5 +1,8 @@
+import json
+from xml.dom.minidom import Document
+
 class Car():
-    
+
     '''Constructor'''
     def __init__(self, *args, **kwargs):
         #Private attributes
@@ -38,3 +41,24 @@ class Car():
 
     def __str__(self):
         return self.__name + ' ' + self.__brand + ' (' + str(self.__nb_doors) + ')'
+
+    def set_nb_doors(self, number):
+        self.__nb_doors = number
+
+    def to_json_string(self):
+        to_string = json.dumps(self.to_hash())
+        return to_string
+
+    def to_xml_node(self, doc):
+        car = doc.createElement('car')
+        car.setAttribute('nb_doors', str(self.__nb_doors))
+        doc.appendChild(car)
+        name = doc.createElement('name')
+        name_content = doc.createCDATASection(self.__name)
+        name.appendChild(name_content)
+        car.appendChild(name)
+        brand = doc.createElement('brand')
+        brand_content = doc.createTextNode(self.__brand)
+        brand.appendChild(brand_content)
+        car.appendChild(brand)
+        return car
