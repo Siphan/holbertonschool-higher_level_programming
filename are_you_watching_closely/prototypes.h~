@@ -1,0 +1,3 @@
+int print_char(char);
+char **string_split(const char *str, char separator);
+char *read_line(const int fd);
